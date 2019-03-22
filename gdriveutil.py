@@ -41,7 +41,7 @@ def check_path_tree(path, drive_service):
 
     for i in range(0, len(path_folders)):
         folder = path_folders[i]
-        parent = path_folders[i+1]
+        parent = path_folders[i + 1]
         if parent == '':
             parent_id = 0
             for idd, name in id_map.items():
@@ -76,7 +76,6 @@ def download(src_path, dest_path, drive_service):
 
 
 def get_folder(folder_name, service):
-
     check_response = service.files().list(q='mimeType contains "vnd.google-apps.folder" and name = "%s"' % folder_name,
                                           fields='files(id)').execute()
     return check_response.get('files', [])
@@ -109,7 +108,7 @@ def upload(src_path, dest_path, service):
         if not folder_id:
             parent = []
             if i != 0:
-                parent = parent_ids[i-1]['id']
+                parent = parent_ids[i - 1]['id']
             folder_metadata = {'name': folder_list[i],
                                'parents': [parent],
                                'mimeType': 'application/vnd.google-apps.folder'}
